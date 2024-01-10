@@ -95,8 +95,28 @@ class TaskManagerApp:
             DataManager.save_data('tasks.dat', self.projects)
 
     def edit_task(self):
-        # Додати логіку для редагування завдання
-        pass
+        project_index = self.project_listbox.curselection()
+        task_index = self.task_listbox.curselection()
+
+        if not project_index or not task_index:
+            messagebox.showwarning("Warning", "Select a project and task first.")
+            return
+
+        project = self.projects[project_index[0]]
+        task = project.tasks[task_index[0]]
+
+        new_title = simpledialog.askstring("Edit Task", "Enter new title:", initialvalue=task.title)
+        new_description = simpledialog.askstring("Edit Task", "Enter new description:", initialvalue=task.description)
+        new_priority = simpledialog.askstring("Edit Task", "Enter new priority:", initialvalue=task.priority)
+        new_deadline = simpledialog.askstring("Edit Task", "Enter new deadline:", initialvalue=task.deadline)
+
+        if new_title and new_priority and new_deadline:
+            task.title = new_title
+            task.description = new_description
+            task.priority = new_priority
+            task.deadline = new_deadline
+            self.update_task_list(project)
+            DataManager.save_data('tasks.dat', self.projects)
 
     def delete_task(self):
         project_index = self.project_listbox.curselection()
