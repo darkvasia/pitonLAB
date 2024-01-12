@@ -54,6 +54,6 @@ class Library:
 
 
 library = Library()
-library.load_books("books.txt")
 library.librarian.add_book(Book("New Book", "Author Name", 2024))
-library.save_books("updated_books.txt")
+library.save_books("books.txt")
+library.load_books("books.txt")
