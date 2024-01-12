@@ -167,7 +167,7 @@ class TaskManagerApp:
         DataManager.save_data('tasks.dat', self.projects)
         self.root.destroy()
 
-# Запуск програми
+
 if __name__ == "__main__":
     root = tk.Tk()
     app = TaskManagerApp(root)
